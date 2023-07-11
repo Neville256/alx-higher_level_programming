@@ -1,15 +1,18 @@
 #!/usr/bin/python3
+"""
+Module for pascal_triangle method.
+"""
+
+
 def pascal_triangle(n):
-    """ Pascal Triangle 1h"""
-    li = []
-    if n <= 0:
-        return li
-    for r in range(n):
-        for c in range(r + 1):
-            if c == 0:
-                li.append([1])
-            elif c == r:
-                li[r].append(1)
-            else:
-                li[r].append(li[r - 1][c] + li[r - 1][c - 1])
-    return li
+    """
+    returns a list of lists of integers
+        Args:
+            n (int): number of lists and digits
+        Returns: list of lists
+    """
+    rows = [[1 for j in range(i + 1)] for i in range(n)]
+    for n in range(n):
+        for i in range(n - 1):
+            rows[n][i + 1] = sum(rows[n - 1][i:i + 2])
+    return rows
