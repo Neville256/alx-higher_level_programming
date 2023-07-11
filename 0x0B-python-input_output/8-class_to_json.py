@@ -1,11 +1,11 @@
 #!/usr/bin/python3
+"""
+Module for class_to_json method.
+"""
 
 
 def class_to_json(obj):
-    """ function that returns the dictionary
-    description
     """
-    dic = {}
-    if hasattr(obj, "__dict__"):
-        dic = obj.__dict__.copy()
-    return dic
+        returns dictionary representation with simple data structure.
+    """
+    return obj.__dict__
