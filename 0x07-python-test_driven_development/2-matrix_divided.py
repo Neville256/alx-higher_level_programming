@@ -22,9 +22,7 @@ def matrix_divided(matrix, div):
     if (
         not isinstance(matrix, list) or matrix == [] or
         not all(isinstance(row, list) for row in matrix) or
-        not all(
-            isinstance(num, (int, float)) for row in matrix for num in row
-        )
+        not all(isinstance(num, (int, float)) for row in matrix for num in row)
     ):
         raise TypeError(
             "matrix must be a matrix (list of lists) of integers/floats"
@@ -39,6 +37,4 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    return [
-        [round(num / div, 2) for num in row] for row in matrix
-    ]
+    return [[round(num / div, 2) for num in row] for row in matrix]
