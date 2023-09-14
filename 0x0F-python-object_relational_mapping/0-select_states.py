@@ -2,7 +2,6 @@
 
 """
     A script that lists all states from the database hbtn_0e_0_usa
-    starting with capital letter N
     Username, password and database names are given as user args
 """
 
@@ -20,11 +19,7 @@ if __name__ == '__main__':
 
     cursor = db.cursor()
 
-    sql = """SELECT * FROM states
-          WHERE name = %s
-          ORDER BY id ASC"""
-
-    cursor.execute(sql, (sys.argv[4],))
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
     data = cursor.fetchall()
 
