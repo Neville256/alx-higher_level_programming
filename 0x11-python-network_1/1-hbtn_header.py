@@ -7,11 +7,23 @@ Usage: ./1-hbtn_header.py <URL>
 """
 from sys import argv
 from urllib.request import Request, urlopen
-
+from urllib.error import URLError, HTTPError
 
 if __name__ == "__main__":
-    url = argv[1]
-    req = Request(url)
+    if len(argv) != 2:
+        print("Usage: ./1-hbtn_header.py <URL>")
+    else:
+        url = argv[1]
+        req = Request(url)
 
-    with urlopen(req) as response:
-        print(dict(response.headers).get("X-Request-Id"))
+        try:
+            with urlopen(req) as response:
+                x_request_id = response.headers.get("X-Request-Id")
+                if x_request_id:
+                    print(x_request_id)
+                else:
+                    print("X-Request-Id header not found in the response.")
+        except URLError as e:
+            print(f"Error: {e}")
+        except HTTPError as e:
+            print(f"HTTP Error: {e}")
